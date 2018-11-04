@@ -6,3 +6,15 @@
     dest: "/etc/sudoers.d/dotfiles"
     block: "{{ ansible_env.USER }} ALL=(ALL) ALL"
     create: true
+
+- name: Ensure base dependencies are installed
+  become: "{{ (ansible_os_family in ['Darwin']) | ternary('false', 'true') }}"
+  package: name={{item}}
+  with_items:
+    - git
+    - jq
+    - htop
+    - wget
+    - bash-completion
+    - man
+  tags: ["packages"]
