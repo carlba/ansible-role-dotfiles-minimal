@@ -1,2 +1,8 @@
 ---
-# tasks file for ansible-role-dotfiles
+
+- name: Ensure passwordless sudo is enabled for current user
+  become: true
+  blockinfile:
+    dest: "/etc/sudoers.d/dotfiles"
+    block: "{{ ansible_env.USER }} ALL=(ALL) ALL"
+    create: true
