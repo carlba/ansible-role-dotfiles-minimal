@@ -3,6 +3,25 @@ dotfiles
 
 Deploys my personalized dotfiles.
 
+Setup the environment
+---------------------
+
+1. Create a github token at https://github.com/settings/tokens/new. (No extra scopes needed)
+
+2. Login to ansible-galaxy
+
+   ```bash
+   ansible-galaxy login --github-token '<TOKEN>'   
+   ```
+
+Import the role from GitHub to Ansible Galaxy
+---------------------------------------------
+
+3. Import the role
+   ```bash
+   ansible-galaxy import --role-name=test-role carlba ansible-role-dotfiles
+   ```
+
 Example Playbook
 ----------------
 
