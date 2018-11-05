@@ -1,7 +1,7 @@
-dotfiles
-========
+dotfiles minimal
+================
 
-Deploys my personalized dotfiles.
+Deploys my minimal personalized dotfiles suitable for CLI usage.
 
 Setup the environment
 ---------------------
@@ -19,7 +19,7 @@ Import the role from GitHub to Ansible Galaxy
 
 3. Import the role
    ```bash
-   ansible-galaxy import --role-name=test-role carlba ansible-role-dotfiles
+   ansible-galaxy import --role-name=dotfiles-minimal carlba ansible-role-dotfiles-minimal
    ```
 
 Example Playbook
@@ -29,7 +29,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: carlba.dotfiles, x: 42 }
+         - { role: carlba.dotfiles_minimal, x: 42 }
 
 License
 -------

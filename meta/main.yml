@@ -1,7 +1,7 @@
 galaxy_info:
   author: carlba
   description: Deploys my personalized dotfiles
-  role_name: dotfiles
+  role_name: dotfiles-minimal
   license: license (MIT)
   min_ansible_version: 2.5
 
@@ -21,4 +21,4 @@ galaxy_info:
       versions:
         - all
   galaxy_tags: []
-  dependencies: []
+dependencies: []
