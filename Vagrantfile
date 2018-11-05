@@ -25,11 +25,11 @@ module LocalCommand
     end
 end
 
-VAGRANT_NAME=File.basename(Dir.getwd)
-CURRENT_DIRECTORY=Dir.pwd()
-DEPLOY_ANSIBLE_GALAXY=false
-ANSIBLE_REQUIREMENTS=if File.exist?('requirements.yml') then 'requirements.yml' else '../../requirements.yml' end
-PLAYBOOK_NAME=if File.exist?('dotfiles.yml') then 'dotfiles.yml' else 'playbook.yml' end
+VAGRANT_NAME ||= File.basename(Dir.getwd)
+CURRENT_DIRECTORY ||= Dir.pwd()
+DEPLOY_ANSIBLE_GALAXY ||= false
+ANSIBLE_REQUIREMENTS ||= if File.exist?('requirements.yml') then 'requirements.yml' else '../../requirements.yml' end
+PLAYBOOK_NAME ||= if File.exist?('tests/test.yml') then 'tests/test.yml' else 'playbook.yml' end
 
 # This Vagrantfile uses the multi-machine concept these links will be helpfull
 # https://www.vagrantup.com/docs/multi-machine/
@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "ubuntu_desktop" do |ubuntu_desktop|
     ubuntu_desktop.ssh.insert_key = false
-    ubuntu_desktop.vm.box = "boxcutter/ubuntu_desktop1604-desktop"
+    ubuntu_desktop.vm.box = "peru/ubuntu-18.04-desktop-amd64"
     #config.vm.box = "mloskot/manjaro-i3-17.0-minimal"
 
     # Create a private network, which allows host-only access to the machine
@@ -77,8 +77,11 @@ Vagrant.configure("2") do |config|
     end
     ubuntu_desktop.vm.provision "ansible" do |ansible|
       ansible.playbook = PLAYBOOK_NAME
-      ansible.ask_vault_pass = true
-      ansible.extra_vars = {"ansible_sudo_pass": "vagrant"}
+      ansible.extra_vars = {"ansible_sudo_pass": "vagrant",
+                            "is_privileged_user": true,
+                            "ansible_python_interpreter": "python3"}
+      ansible.config_file = 'tests/ansible.cfg'
+      ansible.groups = {"vagrant" => ["ubuntu_desktop"]}
     end
   end
 
@@ -96,8 +99,10 @@ Vagrant.configure("2") do |config|
     end
     manjaro.vm.provision "ansible" do |ansible|
       ansible.playbook = PLAYBOOK_NAME
-      ansible.ask_vault_pass = true
-      ansible.extra_vars = {"ansible_sudo_pass": "vagrant"}
+      ansible.extra_vars = {"ansible_sudo_pass": "vagrant",
+                            "is_privileged_user": true}
+      ansible.config_file = 'tests/ansible.cfg'
+      ansible.groups = {"vagrant" => ["manjaro"]}
     end
   end
 
@@ -114,8 +119,11 @@ Vagrant.configure("2") do |config|
       ansible_galaxy.command = "ansible-galaxy install -r ansible/requirements.yml"
     end
     centos7.vm.provision "ansible" do |ansible|
-      ansible.playbook = "common.yml"
-      ansible.extra_vars = {"ansible_sudo_pass": "vagrant"}
+      ansible.playbook = PLAYBOOK_NAME
+      ansible.extra_vars = {"ansible_sudo_pass": "vagrant",
+                            "is_privileged_user": true}
+      ansible.config_file = 'tests/ansible.cfg'
+      ansible.groups = {"vagrant" => ["centos7"]}
     end
   end
 
@@ -123,7 +131,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "ubuntu" do |ubuntu|
     ubuntu.ssh.insert_key = false
     ubuntu.vm.box = "ubuntu/artful64"
-    ubuntu.vm.network "private_network", ip: "10.149.138.151", nic_type: "virtio"
+    centos7.vm.network "private_network", type: "dhcp", nic_type: "virtio"
     ubuntu.vm.provider "virtualbox" do |vb|
       vb.gui = false
       vb.name = VAGRANT_NAME + '_ubuntu'
@@ -132,8 +140,11 @@ Vagrant.configure("2") do |config|
       ansible_galaxy.command = "ansible-galaxy install -r requirements.yml"
     end
     ubuntu.vm.provision "ansible" do |ansible|
-      ansible.playbook = "server.yml"
-      ansible.extra_vars = {"ansible_sudo_pass": "vagrant"}
+      ansible.playbook = PLAYBOOK_NAME
+      ansible.extra_vars = {"ansible_sudo_pass": "vagrant",
+                            "is_privileged_user": true}
+      ansible.config_file = 'tests/ansible.cfg'
+      ansible.groups = {"vagrant" => ["centos7"]}
     end
   end
 end
