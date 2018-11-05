@@ -1,3 +1,4 @@
 ---
 # http://docs.ansible.com/ansible/galaxy.html
 - src: geerlingguy.repo-epel
+- src: kosssi.gitconfig

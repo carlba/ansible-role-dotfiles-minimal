@@ -26,3 +26,18 @@ galaxy_info:
   galaxy_tags: []
 dependencies:
   - { role: geerlingguy.repo-epel, when: "ansible_os_family in ['RedHat']", become: True }
+  - role: kosssi.gitconfig
+    git_config:
+      user:
+        name: '{{ git_commit_username }}'
+        email: '{{ git_commit_email }}'
+      core:
+        editor: vim
+        default: current
+        excludesfile: "~/.gitignore"
+    git_ignore:
+      - "temp/*"
+      - "prepare/*"
+      - "*.sync"
+      - "*.sublime-project"
+      - "*.sublime-workspace"
