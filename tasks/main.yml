@@ -8,6 +8,9 @@
     create: true
   when: is_privileged_user
 
+- include: macos.yml
+  when: ansible_os_family in ['Darwin']
+
 - name: Ensure apt cache is updated on Debian based OSes
   become: true
   apt: update_cache=true cache_valid_time=3600
