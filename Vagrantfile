@@ -126,7 +126,8 @@ Vagrant.configure("2") do |config|
     ubuntu.vm.provision "ansible" do |ansible|
       ansible.playbook = PLAYBOOK_NAME
       ansible.extra_vars = {"ansible_sudo_pass": "vagrant",
-                            "is_privileged_user": true}
+                            "is_privileged_user": true,
+                            "ansible_python_interpreter": "python3"}
       ansible.config_file = 'tests/ansible.cfg'
       ansible.groups = {"vagrant" => ["centos7"]}
     end

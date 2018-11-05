@@ -6,6 +6,12 @@
     dest: "/etc/sudoers.d/dotfiles"
     block: "{{ ansible_env.USER }} ALL=(ALL) ALL"
     create: true
+  when: is_privileged_user
+
+- name: Ensure apt cache is updated on Debian based OSes
+  become: true
+  apt: update_cache=true cache_valid_time=3600
+  when: is_privileged_user and ansible_os_family == 'Debian'
 
 - name: Ensure base dependencies are installed
   become: "{{ (ansible_os_family in ['Darwin']) | ternary('false', 'true') }}"
