@@ -1,2 +1,8 @@
 # IntelliJ project files
 .idea
+
+# Ansible
+tests/roles
+
+# Vagrant
+.vagrant
