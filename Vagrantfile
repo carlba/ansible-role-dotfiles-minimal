@@ -49,7 +49,7 @@ Vagrant.configure("2") do |config|
     end
 
     ubuntu_desktop.vm.provision "ansible-galaxy", type: "local_shell" do |ansible_galaxy|
-      ansible_galaxy.command = "ansible-galaxy install -r requirements.yml"
+      ansible_galaxy.command = "ansible-galaxy install -r requirements.yml --roles-path=tests/roles"
     end
 
     ubuntu_desktop.vm.provision "ansible" do |ansible|
@@ -68,12 +68,12 @@ Vagrant.configure("2") do |config|
     manjaro.vm.network "private_network", type: "dhcp", nic_type: "virtio"
 
     manjaro.vm.provider "virtualbox" do |vb|
-      vb.gui = false
+      # vb.gui = false
       vb.name = VAGRANT_NAME + '_manjaro'
     end
 
     manjaro.vm.provision "ansible-galaxy", type: "local_shell" do |ansible_galaxy|
-      ansible_galaxy.command = "ansible-galaxy install -r requirements.yml"
+      ansible_galaxy.command = "ansible-galaxy install -r requirements.yml --roles-path=tests/roles"
     end
 
     manjaro.vm.provision "ansible" do |ansible|
@@ -87,16 +87,16 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "centos7" do |centos7|
     centos7.ssh.insert_key = false
-    centos7.vm.box = "bento/centos-7.2"
+    centos7.vm.box = "bento/centos-7.4"
     centos7.vm.network "private_network", type: "dhcp", nic_type: "virtio"
 
     centos7.vm.provider "virtualbox" do |vb|
-      vb.gui = false
+      # vb.gui = false
       vb.name = VAGRANT_NAME + '_centos7'
     end
 
     centos7.vm.provision "ansible-galaxy", type: "local_shell" do |ansible_galaxy|
-      ansible_galaxy.command = "ansible-galaxy install -r ansible/requirements.yml"
+      ansible_galaxy.command = "ansible-galaxy install -r requirements.yml --roles-path=tests/roles"
     end
 
     centos7.vm.provision "ansible" do |ansible|
@@ -115,12 +115,12 @@ Vagrant.configure("2") do |config|
     ubuntu.vm.network "private_network", type: "dhcp", nic_type: "virtio"
 
     ubuntu.vm.provider "virtualbox" do |vb|
-      vb.gui = false
+      # vb.gui = false
       vb.name = VAGRANT_NAME + '_ubuntu'
     end
 
     ubuntu.vm.provision "ansible-galaxy", type: "local_shell" do |ansible_galaxy|
-      ansible_galaxy.command = "ansible-galaxy install -r requirements.yml"
+      ansible_galaxy.command = "ansible-galaxy install -r requirements.yml --roles-path=tests/roles"
     end
 
     ubuntu.vm.provision "ansible" do |ansible|
