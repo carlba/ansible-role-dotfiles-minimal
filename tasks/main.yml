@@ -24,9 +24,15 @@
     - jq
     - htop
     - wget
-    - bash-completion
-    - man
   when: is_privileged_user
+
+- name: Ensure non MacOS base dependencies are installed
+  become: true
+  package: name={{item}}
+  with_items:
+    - man
+    - bash-completion
+  when: is_privileged_user and ansible_os_family not in ['Darwin']
 
 # https://sanctum.geek.nz/arabesque/better-bash-history/
 - name: 'Ensure improved bash history is applied to "{{ ansible_env.HOME }}/.bashrc"'
