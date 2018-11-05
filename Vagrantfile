@@ -58,6 +58,7 @@ Vagrant.configure("2") do |config|
                             "is_privileged_user": true,
                             "ansible_python_interpreter": "python3"}
       ansible.config_file = 'tests/ansible.cfg'
+      ansible.raw_arguments = ['--diff']
       ansible.groups = {"vagrant" => ["ubuntu_desktop"]}
     end
   end
@@ -81,6 +82,7 @@ Vagrant.configure("2") do |config|
       ansible.extra_vars = {"ansible_sudo_pass": "vagrant",
                             "is_privileged_user": true}
       ansible.config_file = 'tests/ansible.cfg'
+      ansible.raw_arguments = ['--diff']
       ansible.groups = {"vagrant" => ["manjaro"]}
     end
   end
@@ -104,6 +106,7 @@ Vagrant.configure("2") do |config|
       ansible.extra_vars = {"ansible_sudo_pass": "vagrant",
                             "is_privileged_user": true}
       ansible.config_file = 'tests/ansible.cfg'
+      ansible.raw_arguments = ['--diff']
       ansible.groups = {"vagrant" => ["centos7"]}
     end
   end
@@ -129,6 +132,7 @@ Vagrant.configure("2") do |config|
                             "is_privileged_user": true,
                             "ansible_python_interpreter": "python3"}
       ansible.config_file = 'tests/ansible.cfg'
+      ansible.raw_arguments = ['--diff']
       ansible.groups = {"vagrant" => ["centos7"]}
     end
   end
