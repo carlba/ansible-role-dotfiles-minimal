@@ -14,6 +14,14 @@ Setup the environment
    ansible-galaxy login --github-token '<TOKEN>'   
    ```
 
+3. Install the ansible environment
+    
+   ```bash
+   virtualenv -p python3 venv; source venv/bin/activate
+   pip install -r requirements.txt
+   ansible-galaxy install -r requirements.yml --roles-path=tests/roles
+   ```
+
 Import the role from GitHub to Ansible Galaxy
 ---------------------------------------------
 
