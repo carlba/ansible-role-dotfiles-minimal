@@ -6,3 +6,6 @@ tests/roles
 
 # Vagrant
 .vagrant
+
+# Python
+venv
