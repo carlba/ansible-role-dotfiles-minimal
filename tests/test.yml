@@ -1,4 +1,9 @@
 ---
 - hosts: all
+  pre_tasks:
+    - name: Ensure apt cache is updated on Debian based OSes
+      become: true
+      apt: update_cache=true cache_valid_time=3600
+      when: ansible_os_family == 'Debian'
   roles:
     - ansible-role-dotfiles-minimal
