@@ -12,14 +12,18 @@ addons:
     - python-pip
 
 install:
-  # Install ansible
-  - pip install ansible
+  # Install requirements
+  - pip install -r requirements.txt
 
   # Check ansible version
   - ansible --version
 
   # Create ansible.cfg with correct roles_path
   - printf '[defaults]\nroles_path=../' >ansible.cfg
+
+  # Install Ansible Galaxy roles
+  - ansible-galaxy install -r requirements.yml --roles-path=tests/roles
+
 
 script:
   # Basic role syntax check
