@@ -1,5 +1,8 @@
 ---
 # http://docs.ansible.com/ansible/galaxy.html
 - src: geerlingguy.repo-epel
+- src: geerlingguy.pip
 - src: kosssi.gitconfig
 - src: carlba.bash_aliases
+- src: carlba.vim
+- src: carlba.tmux

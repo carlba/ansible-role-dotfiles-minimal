@@ -52,3 +52,5 @@ dependencies:
       - { alias: 'isodate', command: 'date "+%Y-%m-%d"' }
       - { alias: 'getextip', command: 'curl http://wtfismyip.com/text' }
     when: ansible_os_family in ['Darwin']
+  - role: carlba.vim
+  - role: carlba.tmux
