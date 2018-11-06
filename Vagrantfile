@@ -133,7 +133,7 @@ Vagrant.configure("2") do |config|
                             "ansible_python_interpreter": "python3"}
       ansible.config_file = 'tests/ansible.cfg'
       ansible.raw_arguments = ['--diff']
-      ansible.groups = {"vagrant" => ["centos7"]}
+      ansible.groups = {"vagrant" => ["ubuntu"]}
     end
   end
 end
