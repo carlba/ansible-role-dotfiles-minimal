@@ -3,6 +3,8 @@ dotfiles minimal
 
 Deploys my minimal personalized dotfiles suitable for CLI usage.
 
+This commit is for testing purposes.
+
 Setup the environment
 ---------------------
 
