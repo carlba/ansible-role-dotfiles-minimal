@@ -95,4 +95,3 @@
   get_url:
     url: https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/bash/docker
     dest: '{{ ansible_env.HOME }}/.bash_completion.d/docker'
-
