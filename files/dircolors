@@ -225,11 +225,15 @@ STICKY_OTHER_WRITABLE 48;5;180;38;5;234
 .pandoc 04;38;5;188
 .pdc 04;38;5;188
 .pdf 04;38;5;188
+.json 04;38;5;188
+.yaml 04;38;5;188
+.yml 04;38;5;188
 
 # Files of special interest
 *rc 04;38;5;180
 .conf 04;38;5;180
 *Dockerfile 04;38;5;180
+*Vagrantfile 04;38;5;180
 
 # meta
 *README 04;38;5;187
@@ -254,6 +258,7 @@ STICKY_OTHER_WRITABLE 48;5;180;38;5;234
 .pyc 00;38;5;234
 .class 00;38;5;234
 .cache 00;38;5;234
+.DS_Store 00;38;5;234
 
 # pacman files
 .pacnew 48;5;95;38;5;108
