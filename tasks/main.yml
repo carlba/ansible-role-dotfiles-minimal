@@ -34,9 +34,9 @@
     - bash-completion
   when: is_privileged_user and ansible_os_family not in ['Darwin']
 
-- name: Ensure zenburn dircolors theme is downloaded
-  get_url:
-    url: https://raw.githubusercontent.com/ivoarch/dircolors-zenburn/master/dircolors
+- name: 'Ensure zenburn dircolors is present in "{{ ansible_env.HOME }}/.dir_colors"'
+  copy:
+    src: 'files/dircolors'
     dest: '{{ ansible_env.HOME }}/.dir_colors'
 
 # https://sanctum.geek.nz/arabesque/better-bash-history/
