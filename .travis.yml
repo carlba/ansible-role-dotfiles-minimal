@@ -24,7 +24,6 @@ install:
   # Install Ansible Galaxy roles
   - ansible-galaxy install -r requirements.yml --roles-path=tests/roles
 
-
 script:
   # Basic role syntax check
   - ansible-playbook tests/test.yml -i tests/inventory --syntax-check

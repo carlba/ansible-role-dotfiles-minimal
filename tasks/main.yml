@@ -85,3 +85,14 @@
   file:
     path: '{{ ansible_env.HOME }}/.bash_completion.d'
     state: directory
+
+- name: Ensure vagrant bash completion is used
+  get_url:
+    url: https://raw.githubusercontent.com/hashicorp/vagrant/master/contrib/bash/completion.sh
+    dest: '{{ ansible_env.HOME }}/.bash_completion.d/vagrant'
+
+- name: Ensure docker bash completion is used
+  get_url:
+    url: https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/bash/docker
+    dest: '{{ ansible_env.HOME }}/.bash_completion.d/docker'
+
