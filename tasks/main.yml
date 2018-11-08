@@ -66,3 +66,22 @@
       function CLOSE_COLOR () { echo -ne '\e[m'; }
       export PS1="\[`EXT_COLOR 151`\]\u\[`CLOSE_COLOR`\]@\[`EXT_COLOR 174`\]\h\[`CLOSE_COLOR`\]\[`EXT_COLOR 187`\] \w\$(type parse_git_branch &>/dev/null && parse_git_branch) \$ \[`CLOSE_COLOR`\]"
       eval $( {{ 'gdircolors' if ansible_os_family in ['Darwin'] else 'dircolors'}} -b $HOME/.dir_colors )
+
+- name: 'Ensure private bash completions are sourced'
+  blockinfile:
+    dest: "{{ ansible_env.HOME }}/.bashrc"
+    create: true
+    marker: "# {mark} ANSIBLE MANAGED BLOCK (Ensure private bash completions are sourced)"
+    block: |
+      if [[ -d ~/.bash_completion.d/ ]]
+      then
+          for f in ~/.bash_completion.d/*
+          do
+              source "$f"
+          done
+      fi
+
+- name: 'Ensure private {{ ansible_env.HOME }}/.bash_completion.d directory exists'
+  file:
+    path: '{{ ansible_env.HOME }}/.bash_completion.d'
+    state: directory
