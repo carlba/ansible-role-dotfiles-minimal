@@ -58,6 +58,7 @@
       HISTTIMEFORMAT='%Y-%m-%dT%T '
       shopt -s cmdhist
       shopt -s histappend
+      PROMPT_COMMAND='history -a'
 
 - name: 'Ensure bash color theme is applied to "{{ ansible_env.HOME }}/.bashrc"'
   blockinfile:
