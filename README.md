@@ -41,8 +41,19 @@ Including an example of how to use your role (for instance, with variables passe
       roles:
          - { role: carlba.dotfiles_minimal, x: 42 }
 
+TODO
+----
+
+This is needed to configure locale on Manjaro linux
+
+```bash
+sudo localectl set-locale LANG=en_US.UTF-8
+```
+
 License
 -------
 
 MIT
+
+
 
