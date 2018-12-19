@@ -64,8 +64,8 @@ Vagrant.configure('2') do |config|
   end
 
   config.vm.define 'manjaro' do |manjaro|
-    manjaro.ssh.insert_key = false
-    manjaro.vm.box = 'mloskot/manjaro-i3-17.0-minimal'
+    manjaro.ssh.insert_key = true
+    manjaro.vm.box = 'marashni/manjaro64'
     manjaro.vm.network 'private_network', type: 'dhcp', nic_type: 'virtio'
 
     manjaro.vm.provider 'virtualbox' do |vb|

@@ -34,6 +34,12 @@
     - bash-completion
   when: is_privileged_user and ansible_os_family not in ['Darwin']
 
+- name: Ensure pip is installed
+  become: true
+  package:
+    name: "{{ (ansible_os_family in ['Manjaro Linux']) | ternary('python2-pip', 'python-pip') }}"
+  when: is_privileged_user and ansible_os_family not in ['Darwin']
+
 - name: 'Ensure zenburn dircolors is present in "{{ ansible_env.HOME }}/.dir_colors"'
   copy:
     src: 'files/dircolors'
@@ -64,6 +70,10 @@
       }
       function EXT_COLOR () { echo -ne "\e[38;5;$1m"; }
       function CLOSE_COLOR () { echo -ne '\e[m'; }
+      function parse_git_branch() {
+        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+      }
+
       export PS1="\[`EXT_COLOR 151`\]\u\[`CLOSE_COLOR`\]@\[`EXT_COLOR 174`\]\h\[`CLOSE_COLOR`\]\[`EXT_COLOR 187`\] \w\$(type parse_git_branch &>/dev/null && parse_git_branch) \$ \[`CLOSE_COLOR`\]"
       eval $( {{ 'gdircolors' if ansible_os_family in ['Darwin'] else 'dircolors'}} -b $HOME/.dir_colors )
 
