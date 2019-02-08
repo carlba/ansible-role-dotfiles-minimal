@@ -47,12 +47,14 @@ dependencies:
       - { alias: 'isodate', command: 'date "+%Y-%m-%d"' }
       - { alias: 'getextip', command: 'curl http://wtfismyip.com/text' }
       - { alias: 'ls', command: 'ls --color=auto --group-directories-first' }
+      - { alias: 'll', command: 'ls -lah --color=auto --group-directories-first' }
     when: ansible_os_family not in ['Darwin']
   - role: carlba.bash_aliases
     bash_aliases:
       - { alias: 'isodate', command: 'date "+%Y-%m-%d"' }
       - { alias: 'getextip', command: 'curl http://wtfismyip.com/text' }
       - { alias: 'ls', command: 'gls --color=auto --group-directories-first' }
+      - { alias: 'll', command: 'gls -lah --color=auto --group-directories-first' }
     when: ansible_os_family in ['Darwin']
   - role: carlba.vim
   - role: carlba.tmux
