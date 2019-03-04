@@ -32,7 +32,7 @@ dependencies:
         name: '{{ git_commit_username }}'
         email: '{{ git_commit_email }}'
       core:
-        editor: vim
+        editor: nvim
         default: current
         excludesfile: "~/.gitignore"
     git_ignore:
