@@ -106,3 +106,19 @@
   get_url:
     url: https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/bash/docker
     dest: '{{ ansible_env.HOME }}/.bash_completion.d/docker'
+
+- name: Check if conda is initialized
+  lineinfile:
+    dest: '{{ ansible_env.HOME }}//.bash_profile'
+    line: "# <<< conda init <<<"
+  check_mode: yes
+  register: presence
+  failed_when: presence.changed
+
+- name: Ensure conda is deactivated in bash_profile
+  lineinfile:
+    dest: '{{ ansible_env.HOME }}//.bash_profile'
+    line: "conda deactivate"
+    insertafter: '# <<< conda init <<<'
+  when: presence is not changed
+
