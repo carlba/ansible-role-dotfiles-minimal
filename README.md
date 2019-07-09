@@ -23,6 +23,16 @@ Setup the environment
    pip install -r requirements.txt
    ansible-galaxy install -r requirements.yml --roles-path=tests/roles
    ```
+   
+Running 
+-------
+
+This role can be tested, like so:
+
+```bash
+cd tests && ansible-playbook --connection local -i localhost, test.yml
+```
+
 
 Import the role from GitHub to Ansible Galaxy
 ---------------------------------------------
@@ -54,6 +64,3 @@ License
 -------
 
 MIT
-
-
-
