@@ -122,3 +122,13 @@
     insertafter: '# <<< conda init <<<'
   when: presence is not changed
 
+# https://unix.stackexchange.com/questions/87745/what-does-lc-all-c-do
+# TODO: Look into making the locale handling more granular
+- name: Ensure LC_ALL is set to en_US.UTF-8
+  blockinfile:
+    dest: '{{ ansible_env.HOME }}//.bash_profile'
+    block: 'export LC_ALL=en_US.UTF-8'
+    create: true
+    marker: "# {mark} ANSIBLE MANAGED BLOCK (Ensure LC_ALL is set)"
+    insertbefore: BOF
+  tags: bash_profile
