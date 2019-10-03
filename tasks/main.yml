@@ -114,6 +114,7 @@
   check_mode: yes
   register: presence
   failed_when: presence.changed
+  ignore_errors: true
 
 - name: Ensure conda is deactivated in bash_profile
   lineinfile:
