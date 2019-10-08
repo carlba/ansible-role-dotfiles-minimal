@@ -1,6 +1,11 @@
 ---
 # http://docs.python-guide.org/en/latest/starting/install/osx/
-# TODO: Add python installation
+
+- name: Ensure it is possible to use pip
+  package: name=python@2
+
+- name: Ensure it is possible to gnu ls
+  package: name=coreutils
 
 - name: Ensure ~/.bashrc is sourced in ~/.bash_profile on MacOS
   blockinfile:
@@ -23,3 +28,6 @@
       if [ -f $(brew --prefix)/etc/bash_completion ]; then
         . $(brew --prefix)/etc/bash_completion
       fi
+
+- name: Ensure it is possible to use md5sum
+  package: name=md5sha1sum

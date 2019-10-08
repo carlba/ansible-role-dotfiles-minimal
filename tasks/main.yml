@@ -10,6 +10,7 @@
 
 - include: macos.yml
   when: ansible_os_family in ['Darwin']
+  tags: macos
 
 - name: Ensure apt cache is updated on Debian based OSes
   become: true
