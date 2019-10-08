@@ -7,6 +7,14 @@
 - name: Ensure it is possible to gnu ls
   package: name=coreutils
 
+- name: Ensure MacOS Cataline bash deprecation prompt is supressed
+  blockinfile:
+    dest: "{{ ansible_env.HOME }}/.bash_profile"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK (MacOS Catalina bash deprecation prompt is suppressed)"
+    create: true
+    insertbefore: BOF
+    block: export BASH_SILENCE_DEPRECATION_WARNING=1
+
 - name: Ensure ~/.bashrc is sourced in ~/.bash_profile on MacOS
   blockinfile:
     dest: "{{ ansible_env.HOME }}/.bash_profile"
