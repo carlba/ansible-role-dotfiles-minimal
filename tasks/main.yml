@@ -110,7 +110,7 @@
 
 - name: Check if conda is initialized
   lineinfile:
-    dest: '{{ ansible_env.HOME }}//.bash_profile'
+    dest: '{{ bash_profile_path }}'
     line: "# <<< conda init <<<"
   check_mode: yes
   register: presence
@@ -119,7 +119,7 @@
 
 - name: Ensure conda is deactivated in bash_profile
   lineinfile:
-    dest: '{{ ansible_env.HOME }}//.bash_profile'
+    dest: '{{ bash_profile_path }}'
     line: "conda deactivate"
     insertafter: '# <<< conda init <<<'
   when: presence is not changed
@@ -128,7 +128,7 @@
 # TODO: Look into making the locale handling more granular
 - name: Ensure LC_ALL is set to en_US.UTF-8
   blockinfile:
-    dest: '{{ ansible_env.HOME }}//.bash_profile'
+    dest: '{{ bash_profile_path }}'
     block: 'export LC_ALL=en_US.UTF-8'
     create: true
     marker: "# {mark} ANSIBLE MANAGED BLOCK (Ensure LC_ALL is set)"
