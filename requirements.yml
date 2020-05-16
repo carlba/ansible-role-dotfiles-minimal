@@ -1,7 +1,7 @@
 ---
 # http://docs.ansible.com/ansible/galaxy.html
 - src: geerlingguy.repo-epel
-- src: geerlingguy.pip
+- src: carlba.pip
 - src: carlba.gitconfig
   version: master
 - src: carlba.bash_aliases
