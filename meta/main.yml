@@ -26,7 +26,8 @@ galaxy_info:
   galaxy_tags: []
 dependencies:
   - { role: geerlingguy.repo-epel, when: "ansible_os_family in ['RedHat'] and is_privileged_user", become: True }
-  - role: kosssi.gitconfig
+  - name: carlba.gitconfig
+    version: master
     git_config:
       user:
         name: '{{ git_commit_username }}'
@@ -41,6 +42,8 @@ dependencies:
       - "*.sync"
       - "*.sublime-project"
       - "*.sublime-workspace"
+  - name: carlba.bash_aliases
+    version: master
   - role: carlba.bash_aliases
     bash_aliases:
       - { alias: 'dudefault', command: 'du -hx --max-depth=1 | sort -hr | head' }
@@ -58,5 +61,7 @@ dependencies:
       - { alias: 'll', command: 'gls -lah --color=auto --group-directories-first' }
       - { alias: 'git', command: 'LANG=en_GB git' }
     when: ansible_os_family in ['Darwin']
-  - role: carlba.vim
-  - role: carlba.tmux
+  - name: carlba.vim
+    version: master
+  - name: carlba.tmux
+    version: master
