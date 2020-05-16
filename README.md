@@ -19,8 +19,9 @@ Setup the environment
 3. Install the ansible environment
     
    ```bash
-   virtualenv -p python2 venv; source venv/bin/activate
+   virtualenv -p python3 venv; source venv/bin/activate
    pip install -r requirements.txt
+   pip install .
    ansible-galaxy install -r requirements.yml --roles-path=tests/roles
    ```
    
@@ -30,7 +31,8 @@ Running
 This role can be tested, like so:
 
 ```bash
-cd tests && ansible-playbook --connection local -i localhost, test.yml
+role-update
+role-test
 ```
 
 

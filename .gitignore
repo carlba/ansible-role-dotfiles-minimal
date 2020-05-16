@@ -3,9 +3,14 @@
 
 # Ansible
 tests/roles
+*.retry
 
 # Vagrant
 .vagrant
 
 # Python
 venv
+*.egg
+.gtm/
+build/
+*.egg-info/

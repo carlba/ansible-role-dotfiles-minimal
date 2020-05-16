@@ -1,0 +1,2 @@
+#/bin/bash
+cd tests && ansible-playbook --connection local -i localhost, test.yml
