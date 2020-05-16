@@ -1,3 +1,6 @@
 ---
 # vars file for ansible-role-dotfiles
 bash_profile_path: '{{ ansible_env.HOME }}/{{ ".profile" if ansible_distribution == "Ubuntu" else ".bash_profile" }}'
+pip_package: '{{ "python3-pip" if ansible_distribution == "Ubuntu" else "python-pip" }}'
+pip_executable: '{{ "pip3" if ansible_distribution == "Ubuntu" else "pip" }}'
+
