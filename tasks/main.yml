@@ -35,12 +35,6 @@
     - bash-completion
   when: is_privileged_user and ansible_os_family not in ['Darwin']
 
-- name: Ensure pip is installed
-  become: true
-  package:
-    name: "{{ (ansible_os_family in ['Manjaro Linux']) | ternary('python2-pip', 'python-pip') }}"
-  when: is_privileged_user and ansible_os_family not in ['Darwin']
-
 - name: 'Ensure zenburn dircolors is present in "{{ ansible_env.HOME }}/.dir_colors"'
   copy:
     src: 'files/dircolors'
