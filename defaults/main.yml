@@ -2,3 +2,4 @@
 is_privileged_user: false
 git_commit_username: 'Carl Bäckström'
 git_commit_email: 'genzorg@gmail.com'
+git_config_user: 'cbackstrom'
