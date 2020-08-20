@@ -1,9 +1,6 @@
 ---
 # http://docs.python-guide.org/en/latest/starting/install/osx/
 
-- name: Ensure it is possible to use pip
-  package: name=python@2
-
 - name: Ensure it is possible to gnu ls
   package: name=coreutils
 
