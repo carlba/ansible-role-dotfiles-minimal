@@ -42,6 +42,7 @@ dependencies:
       - "*.sync"
       - "*.sublime-project"
       - "*.sublime-workspace"
+      - '.DS_Store'
   - name: carlba.bash_aliases
     version: master
   - role: carlba.bash_aliases
