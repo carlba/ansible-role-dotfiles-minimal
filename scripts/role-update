@@ -1,3 +1,0 @@
-#!/bin/bash
-echo $PWD
-rm -rf tests/roles/carlba* && ansible-galaxy install --force --roles-path=tests/roles -r requirements.yml

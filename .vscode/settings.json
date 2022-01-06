@@ -1,0 +1,3 @@
+{
+  "ansible.python.activationScript": "./venv/bin/activate"
+}

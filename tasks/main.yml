@@ -1,10 +1,9 @@
 ---
-
 - name: Ensure passwordless sudo is enabled for current user
   become: true
   blockinfile:
-    dest: "/etc/sudoers.d/dotfiles"
-    block: "{{ ansible_env.USER }} ALL=(ALL) ALL"
+    dest: '/etc/sudoers.d/dotfiles'
+    block: '{{ ansible_env.USER }} ALL=(ALL) ALL'
     create: true
   when: is_privileged_user
 
@@ -43,9 +42,9 @@
 # https://sanctum.geek.nz/arabesque/better-bash-history/
 - name: 'Ensure improved bash history is applied to "{{ ansible_env.HOME }}/.bashrc"'
   blockinfile:
-    dest: "{{ ansible_env.HOME }}/.bashrc"
+    dest: '{{ ansible_env.HOME }}/.bashrc'
     create: true
-    marker: "# {mark} ANSIBLE MANAGED BLOCK (better bash history)"
+    marker: '# {mark} ANSIBLE MANAGED BLOCK (better bash history)'
     block: |
       HISTFILESIZE=1000000
       HISTSIZE=1000000
@@ -57,9 +56,9 @@
 
 - name: 'Ensure bash color theme is applied to "{{ ansible_env.HOME }}/.bashrc"'
   blockinfile:
-    dest: "{{ ansible_env.HOME }}/.bashrc"
+    dest: '{{ ansible_env.HOME }}/.bashrc'
     create: true
-    marker: "# {mark} ANSIBLE MANAGED BLOCK (add colors in terminal)"
+    marker: '# {mark} ANSIBLE MANAGED BLOCK (add colors in terminal)'
     block: |
       function parse_git_branch() {
         git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
@@ -75,9 +74,9 @@
 
 - name: 'Ensure private bash completions are sourced'
   blockinfile:
-    dest: "{{ ansible_env.HOME }}/.bashrc"
+    dest: '{{ ansible_env.HOME }}/.bashrc'
     create: true
-    marker: "# {mark} ANSIBLE MANAGED BLOCK (Ensure private bash completions are sourced)"
+    marker: '# {mark} ANSIBLE MANAGED BLOCK (Ensure private bash completions are sourced)'
     block: |
       if [[ -d ~/.bash_completion.d/ ]]
       then
@@ -105,7 +104,7 @@
 - name: Check if conda is initialized
   lineinfile:
     dest: '{{ bash_profile_path }}'
-    line: "# <<< conda init <<<"
+    line: '# <<< conda init <<<'
   check_mode: yes
   register: presence
   failed_when: presence.changed
@@ -114,7 +113,7 @@
 - name: Ensure conda is deactivated in bash_profile
   lineinfile:
     dest: '{{ bash_profile_path }}'
-    line: "conda deactivate"
+    line: 'conda deactivate'
     insertafter: '# <<< conda init <<<'
   when: presence is not changed
 
@@ -125,6 +124,6 @@
     dest: '{{ bash_profile_path }}'
     block: 'export LC_ALL=en_US.UTF-8'
     create: true
-    marker: "# {mark} ANSIBLE MANAGED BLOCK (Ensure LC_ALL is set)"
+    marker: '# {mark} ANSIBLE MANAGED BLOCK (Ensure LC_ALL is set)'
     insertbefore: BOF
-  tags: bash_profile
+  tags:
