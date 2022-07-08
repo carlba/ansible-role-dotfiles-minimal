@@ -9,7 +9,7 @@
 
 - include: macos.yml
   when: ansible_os_family in ['Darwin']
-  tags: macos
+  tags: [macos]
 
 - name: Ensure apt cache is updated on Debian based OSes
   become: true
@@ -126,4 +126,3 @@
     create: true
     marker: '# {mark} ANSIBLE MANAGED BLOCK (Ensure LC_ALL is set)'
     insertbefore: BOF
-  tags:
