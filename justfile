@@ -24,7 +24,6 @@ update:
   pip install -r requirements.txt
   echo "Ensure Ansible Galaxy requirements from requirements.yml"
   rm -rf tests/roles/carlba* && ansible-galaxy install --force --roles-path=tests/roles -r requirements.yml
-  ansible-galaxy install -r requirements.yml
 
 format:
   @echo "Formatting all files using prettier"
