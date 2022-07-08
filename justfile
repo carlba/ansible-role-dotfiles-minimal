@@ -1,3 +1,4 @@
+set dotenv-load := true
 python_venv_bin := "venv/bin"
 
 _header name:
@@ -30,5 +31,5 @@ format:
   @prettier --write .
 
 test-role:
-  /bin/bash
+  #!/bin/bash
   cd tests && ansible-playbook --connection local -i localhost, test.yml
