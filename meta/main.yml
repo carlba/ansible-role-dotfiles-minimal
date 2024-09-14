@@ -3,7 +3,7 @@ galaxy_info:
   description: Deploys my personalized dotfiles
   role_name: dotfiles-minimal
   license: license (MIT)
-  min_ansible_version: 2.5
+  min_ansible_version: '2.5'
 
   # Master if not specified
   #github_branch:
@@ -22,7 +22,7 @@ galaxy_info:
         - all
     - name: EL
       versions:
-        - 7
+        - '7'
   galaxy_tags: []
 dependencies:
   - { role: geerlingguy.repo-epel, when: "ansible_os_family in ['RedHat'] and is_privileged_user", become: True }

@@ -5,11 +5,10 @@
 - src: carlba.bash_aliases
   version: master
 - src: geerlingguy.pip
+  version: master
 - src: carlba.vim
   version: master
 - src: carlba.tmux
   version: master
 - src: carlba.dotfiles_minimal
-  version: master
-- src: carlba.pip
   version: master
